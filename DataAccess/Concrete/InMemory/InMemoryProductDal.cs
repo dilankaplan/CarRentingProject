@@ -2,7 +2,9 @@
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete
 {
@@ -24,7 +26,15 @@ namespace DataAccess.Concrete
         }
         public void Add(Product Product)
         {
-            _products.Add(Product);
+            if(Product.ProductName.Length>=2 && Product.DailyPrice<=0)
+            {
+                _products.Add(Product);
+            }
+            else
+            {
+                Console.WriteLine("Lütfen günlük kiralama bedelini ve ürün ismini tekrar gözden geçirin.");
+            }
+           
 
         }
 
@@ -34,19 +44,15 @@ namespace DataAccess.Concrete
             _products.Remove(productToDelete);
         }
 
-        public List<Product> GetAll()
+ 
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
             return _products;
         }
-
-        public List<Product> GetAll(Product product)
+        
+        public List<Product> GetId(Expression<Func<Product, bool>> filter = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Product> GetId(int ColorId)
-        {
-            return _products.Where(p => p.ColorId == ColorId).ToList();
+            return _products.Where(p => p.Id == p.Id).ToList();
         }
 
         public void Update(Product product)

@@ -8,7 +8,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductManager productManager = new ProductManager(new DataAccess.InMemory.Concrete.InMemoryProductDal());
+            ProductManager productManager = new ProductManager(new DataAccess.EntityFramework.EfProductDal());
             foreach (var product in productManager.GetAll())
             {
                 Console.WriteLine(product.DailyPrice);

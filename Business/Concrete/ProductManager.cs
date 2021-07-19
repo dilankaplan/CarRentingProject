@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
-using DataAccess.InMemory.Abstract;
+using DataAccess.Abstract;
+using DataAccess.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -10,11 +12,22 @@ namespace Business.Concrete
     public class ProductManager :IProductService
     {
         IProductDal _productDal;
+        IBrandDal _brandDal;
+        IColorDal _colorDal;
 
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
+        public ProductManager(IBrandDal brandDal)
+        {
+            _brandDal = brandDal;
+        }
+        public ProductManager(IColorDal colorDal)
+        {
+            _colorDal = colorDal;
+        }
+
 
         public List<Product> GetAll()
         {
@@ -22,9 +35,16 @@ namespace Business.Concrete
             return _productDal.GetAll();
         }
 
-        public List<Product> GetAll(Product product)
+        public List<Product> GetCarsByBrandId(int brandId)
         {
-            throw new NotImplementedException();
+            return _productDal.GetAll(p => p.BrandId == brandId);
         }
+
+        public List<Product> GetCarsByColorId(int colorId)
+        {
+            return _productDal.GetAll(p=>p.ColorId== colorId);
+        }
+
+       
     }
 }
