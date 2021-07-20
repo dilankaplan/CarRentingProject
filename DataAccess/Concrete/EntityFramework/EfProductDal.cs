@@ -3,6 +3,7 @@
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.EntityFramework
@@ -24,7 +25,17 @@ namespace DataAccess.EntityFramework
             throw new NotImplementedException();
         }
 
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetId(int ColorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetId(Expression<Func<Product, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
