@@ -44,7 +44,11 @@ namespace DataAccess.Concrete
             _products.Remove(productToDelete);
         }
 
- 
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
             return _products;

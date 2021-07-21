@@ -20,6 +20,11 @@ namespace DataAccess.EntityFramework
             throw new NotImplementedException();
         }
 
+        public Color Get(Expression<Func<Color, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAll(Expression<Func<Color, bool>> filter = null)
         {
             throw new NotImplementedException();
