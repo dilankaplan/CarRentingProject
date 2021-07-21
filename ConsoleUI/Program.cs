@@ -15,8 +15,6 @@ namespace ConsoleUI
                 Console.WriteLine(product.ProductName);
             }
 
-
-
             ProductManager productManager = new ProductManager(new DataAccess.EntityFramework.EfProductDal());
             foreach (var product in productManager.GetAll())
             {
