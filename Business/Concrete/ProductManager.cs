@@ -1,19 +1,16 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using DataAccess.EntityFramework;
 using Entities.Concrete;
-using System;
+using Entities.DTOs;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace Business.Concrete
 {
-    public class ProductManager :IProductService
+    public class ProductManager : IProductService
     {
         IProductDal _productDal;
         IBrandDal _brandDal;
-        IColorDal _colorDal;
+        DataAccess.Abstract.IColorDal _colorDal;
 
         public ProductManager(IProductDal productDal)
         {
@@ -23,7 +20,7 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-        public ProductManager(IColorDal colorDal)
+        public ProductManager(DataAccess.Abstract.IColorDal colorDal)
         {
             _colorDal = colorDal;
         }
@@ -35,8 +32,8 @@ namespace Business.Concrete
 
         public List<Product> GetAll()
         {
-
             return _productDal.GetAll();
+           
         }
 
         public List<Product> GetCarsByBrandId(int brandId)
@@ -49,6 +46,9 @@ namespace Business.Concrete
             return _productDal.GetAll(p=>p.ColorId== colorId);
         }
 
-       
+        public List<ProductDetailDto> GetProductDetailDtos()
+        {
+            return _productDal.ProductDetails;
+        }
     }
 }

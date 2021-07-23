@@ -6,14 +6,14 @@ using System.Text;
 
 namespace DataAccess.EntityFramework
 {
-    public class DatabaseContext:DbContext
+    public class DatabaseContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RentACarProject;Trusted_Connection=true");
+            DbContextOptionsBuilder dbContextOptionsBuilder = optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RentACarProject;Trusted_Connection=true");
 
         }
-        public DbSet<Product> Cars { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Brand> Brands { get; set; }
 
