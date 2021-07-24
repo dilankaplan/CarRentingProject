@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constant;
+using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -25,30 +27,46 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
             _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            return _productDal.GetAll();
-           
+            _productDal.GetAll();
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
         }
 
-        public List<Product> GetCarsByBrandId(int brandId)
+        public IDataResult<List<Brand>> GetCarsByBrandId(int brandId)
         {
-            return _productDal.GetAll(p => p.BrandId == brandId);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == brandId));
         }
 
-        public List<Product> GetCarsByColorId(int colorId)
+        public SuccessDataResult<List<Color>> GetCarsByColorId(int colorId)
         {
-            return _productDal.GetAll(p=>p.ColorId== colorId);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p=>p.ColorId== colorId));
         }
 
-        public List<ProductDetailDto> GetProductDetailDtos()
+        public IDataResult<List<ProductDetailDto>> GetProductDetailDtos()
         {
-            return _productDal.ProductDetails;
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.ProductDetails);
+        }
+
+        IDataResult<Product> IProductService.GetById(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        IDataResult<List<Product>> IProductService.GetCarsByBrandId(int brandId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        IDataResult<List<Product>> IProductService.GetCarsByColorId(int colorId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System.Collections.Generic;
 namespace DataAccess.EntityFramework
 {
-    public class EfProductDal : EfEntityRepository<Product, DatabaseContext>, IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, DatabaseContext>,IProductDal
     {
 
         public List<ProductDetailDto> GetProductDetails()
@@ -21,6 +22,7 @@ namespace DataAccess.EntityFramework
                                  DailyPrice = p.DailyPrice,
                                  ColorName = k.ColorName
                              };
+
                 return result.ToList();
             }
         }

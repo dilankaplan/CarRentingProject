@@ -62,6 +62,8 @@ namespace DataAccess.Concrete
 
         public List<ProductDetailDto> ProductDetails => throw new NotImplementedException();
 
+        List<ProductDetailDto> IProductDal.ProductDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public void Update(Product product)
         {
             Product ProductToUpdate = _products.SingleOrDefault(p => p.Id == product.Id);

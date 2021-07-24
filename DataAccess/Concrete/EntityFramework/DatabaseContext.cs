@@ -8,6 +8,7 @@ namespace DataAccess.EntityFramework
 {
     public class DatabaseContext : DbContext
     {
+      
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             DbContextOptionsBuilder dbContextOptionsBuilder = optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RentACarProject;Trusted_Connection=true");
