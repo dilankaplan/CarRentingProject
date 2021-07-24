@@ -12,7 +12,7 @@ namespace Business.Concrete
     {
         IProductDal _productDal;
         IBrandDal _brandDal;
-        DataAccess.Abstract.IColorDal _colorDal;
+        IColorDal _colorDal;
 
         public ProductManager(IProductDal productDal)
         {

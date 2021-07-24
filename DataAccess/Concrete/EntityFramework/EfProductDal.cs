@@ -15,7 +15,7 @@ namespace DataAccess.EntityFramework
                     var result = from p in context.Products
                                  join c in context.Colors
                                  on c.ColorId equals c.Id
-                                 join b in context.Brands
+                                 join b in context.Products
                                  on c.BrandId equals b.Id
                                  select new ProductDetailDto
                                  {
