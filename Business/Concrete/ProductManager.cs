@@ -51,7 +51,7 @@ namespace Business.Concrete
 
         public IDataResult<List<ProductDetailDto>> GetProductDetailDtos()
         {
-            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.ProductDetails);
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.ProductDetails(),Messages.ProductsListed);
         }
 
         IDataResult<Product> IProductService.GetById(int Id)

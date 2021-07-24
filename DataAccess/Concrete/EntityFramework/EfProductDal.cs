@@ -5,27 +5,30 @@ using Entities.DTOs;
 using System.Collections.Generic;
 namespace DataAccess.EntityFramework
 {
-    public class EfProductDal : EfEntityRepositoryBase<Product, DatabaseContext>,IProductDal
-    {
-
-        public List<ProductDetailDto> GetProductDetails()
+        public class EfCarDal : EfEntityRepositoryBase<Product, DatabaseContext>, IProductDal
         {
-            using (DatabaseContext context = new DatabaseContext())
-            {
-                var result = from p in context.Products
-                             join b in context.Brands on p.BrandId equals b.BrandId
-                             join k in context.Colors on p.ColorId equals k.ColorId
-                             select new ProductDetailDto
-                             {
-                                 ProductName = p.ProductName,
-                                 BrandName = b.BrandName,
-                                 DailyPrice = p.DailyPrice,
-                                 ColorName = k.ColorName
-                             };
 
-                return result.ToList();
+        public List<ProductDetailDto> ProductDetails()
+            {
+                 using (DatabaseContext context = new DatabaseContext())
+                {
+                    var result = from p in context.Products
+                                 join c in context.Colors
+                                 on c.ColorId equals c.Id
+                                 join b in context.Brands
+                                 on c.BrandId equals b.Id
+                                 select new ProductDetailDto
+                                 {
+                                     Id = c.Id,
+                                     BrandName = b.Name,
+                                     ColorName = c.Name,
+                                     DailyPrice = c.DailyPrice
+                                 };
+                    return result.ToList();
+                }
             }
-        }
+
+       
     }
 
-}
+    }

@@ -62,7 +62,7 @@ namespace DataAccess.Concrete
 
         public List<ProductDetailDto> ProductDetails => throw new NotImplementedException();
 
-        List<ProductDetailDto> IProductDal.ProductDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+       
 
         public void Update(Product product)
         {
@@ -75,7 +75,10 @@ namespace DataAccess.Concrete
 
         }
 
-       
+        List<ProductDetailDto> IProductDal.ProductDetails()
+        {
+            throw new NotImplementedException();
         }
+    }
     }
 
